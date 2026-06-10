@@ -265,5 +265,10 @@ namespace OBATIN.view
                 Application.Exit();
             }
         }
+
+        private void transaksi_dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
