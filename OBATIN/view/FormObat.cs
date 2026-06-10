@@ -21,5 +21,10 @@ namespace OBATIN.view
         {
 
         }
+
+        private void FormObat_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
