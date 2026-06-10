@@ -48,5 +48,10 @@ namespace OBATIN.view
                 MessageBox.Show("Username atau Password salah!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            // contoh tambahan
+        }
     }
 }
