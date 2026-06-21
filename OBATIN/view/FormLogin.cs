@@ -1,13 +1,14 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-using OBATIN.konfigurasi;
+using OBATIN.service;
 
 namespace OBATIN.view
 {
     public partial class FormLogin : Form
     {
-        Koneksi kon = new Koneksi();
+        // Pakai User_service untuk login
+        User_service userService = new User_service();
 
         public FormLogin()
         {
@@ -20,26 +21,23 @@ namespace OBATIN.view
             string username = username_txt.Text.Trim().Replace("'", "''");
             string password = password_txt.Text.Trim().Replace("'", "''");
 
+            // Validasi input tidak boleh kosong
             if (username == "" || password == "")
             {
-                MessageBox.Show("Username dan Password harus diisi!");
+                MessageBox.Show("Username dan Password harus diisi!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string query =
-                "SELECT * FROM users " +
-                "WHERE username='" + username + "' " +
-                "AND password='" + password + "'";
-
-            DataTable dt = kon.eksekusiQuery(query);
+            // Cek ke database via service
+            DataTable dt = userService.login(username, password);
 
             if (dt.Rows.Count > 0)
             {
-                // ambil role dari database
+                // Ambil role dari database
                 string role = dt.Rows[0]["role"].ToString();
 
-                MessageBox.Show("Login Berhasil!");
-
+                // Buka dashboard sesuai role
                 FormDashboard dash = new FormDashboard(username, role);
                 dash.Show();
 
@@ -47,13 +45,11 @@ namespace OBATIN.view
             }
             else
             {
-                MessageBox.Show("Username atau Password Salah!");
+                MessageBox.Show("Username atau Password Salah!", "Login Gagal",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void FormLogin_Load(object sender, EventArgs e) { }
     }
 }

@@ -78,7 +78,7 @@
             // 
             this.stok_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stok_btn.ForeColor = System.Drawing.Color.Black;
-            this.stok_btn.Location = new System.Drawing.Point(15, 206);
+            this.stok_btn.Location = new System.Drawing.Point(15, 288);
             this.stok_btn.Name = "stok_btn";
             this.stok_btn.Size = new System.Drawing.Size(190, 45);
             this.stok_btn.TabIndex = 7;
@@ -96,12 +96,13 @@
             this.logout_btn.TabIndex = 6;
             this.logout_btn.Text = "Logout";
             this.logout_btn.UseVisualStyleBackColor = false;
+            this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
             // 
             // riwayat_btn
             // 
             this.riwayat_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.riwayat_btn.ForeColor = System.Drawing.Color.Black;
-            this.riwayat_btn.Location = new System.Drawing.Point(15, 339);
+            this.riwayat_btn.Location = new System.Drawing.Point(15, 212);
             this.riwayat_btn.Name = "riwayat_btn";
             this.riwayat_btn.Size = new System.Drawing.Size(190, 45);
             this.riwayat_btn.TabIndex = 3;
@@ -112,7 +113,7 @@
             // 
             this.transaksi_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.transaksi_btn.ForeColor = System.Drawing.Color.Black;
-            this.transaksi_btn.Location = new System.Drawing.Point(15, 271);
+            this.transaksi_btn.Location = new System.Drawing.Point(15, 361);
             this.transaksi_btn.Name = "transaksi_btn";
             this.transaksi_btn.Size = new System.Drawing.Size(190, 45);
             this.transaksi_btn.TabIndex = 2;

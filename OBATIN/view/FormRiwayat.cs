@@ -1,13 +1,14 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-using OBATIN.konfigurasi;
+using OBATIN.service;
 
 namespace OBATIN.view
 {
     public partial class FormRiwayat : Form
     {
-        private Koneksi kon = new Koneksi();
+        // Service untuk mengakses data penjualan
+        private Penjualan_service penjualanService = new Penjualan_service();
 
         public FormRiwayat()
         {
@@ -17,44 +18,29 @@ namespace OBATIN.view
 
         private void FormRiwayat_Load(object sender, EventArgs e)
         {
-            LoadData();
+            // Muat semua data saat pertama dibuka
+            MuatSemuaData();
+
+            // Daftarkan event pencarian tanggal
             cari_dt.ValueChanged += cari_dt_ValueChanged;
-            this.FormClosed += FormRiwayat_FormClosed;
         }
 
-        private void LoadData()
+        // Tampilkan semua riwayat transaksi
+        private void MuatSemuaData()
         {
-            try
-            {
-                string query = "SELECT id_penjualan AS `ID Penjualan`, no_nota AS `No Nota`, tanggal AS `Tanggal`, kasir AS `Kasir`, total_bayar AS `Total Bayar` FROM penjualan ORDER BY tanggal DESC";
-                DataTable dt = kon.eksekusiQuery(query);
-                riwayat_dgv.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gagal memuat data riwayat: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            DataTable dt = penjualanService.viewAll();
+            riwayat_dgv.DataSource = dt;
         }
 
+        // Filter riwayat berdasarkan tanggal yang dipilih
         private void cari_dt_ValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string selectDate = cari_dt.Value.ToString("yyyy-MM-dd");
-                string query = $"SELECT id_penjualan AS `ID Penjualan`, no_nota AS `No Nota`, tanggal AS `Tanggal`, kasir AS `Kasir`, total_bayar AS `Total Bayar` " +
-                               $"FROM penjualan WHERE DATE(tanggal) = '{selectDate}' ORDER BY tanggal DESC";
-                DataTable dt = kon.eksekusiQuery(query);
-                riwayat_dgv.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gagal menyaring data: " + ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            string tanggalTerpilih = cari_dt.Value.ToString("yyyy-MM-dd");
+            DataTable dt = penjualanService.searchByTanggal(tanggalTerpilih);
+            riwayat_dgv.DataSource = dt;
         }
 
-        private void FormRiwayat_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
+        // Event placeholder dari designer
+        private void FormRiwayat_Load_1(object sender, EventArgs e) { }
     }
 }

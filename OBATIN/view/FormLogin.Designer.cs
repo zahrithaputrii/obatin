@@ -1,4 +1,4 @@
-﻿namespace OBATIN.view
+namespace OBATIN.view
 {
     partial class FormLogin
     {
@@ -77,17 +77,15 @@
             this.username_txt.Size = new System.Drawing.Size(272, 40);
             this.username_txt.TabIndex = 1;
             // 
-            // password_txt
-            // 
             this.password_txt.BackColor = System.Drawing.Color.White;
             this.password_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.password_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_txt.Location = new System.Drawing.Point(479, 204);
             this.password_txt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.password_txt.Multiline = true;
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(272, 40);
             this.password_txt.TabIndex = 2;
+            this.password_txt.UseSystemPasswordChar = true;
             // 
             // login_btn
             // 
