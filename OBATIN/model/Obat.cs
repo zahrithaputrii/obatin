@@ -7,5 +7,6 @@ namespace OBATIN.model
         public string NamaObat { get; set; }
         public decimal Harga { get; set; }
         public int Stok { get; set; }
+        public string Kategori { get; set; }
     }
 }

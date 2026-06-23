@@ -27,27 +27,26 @@ namespace OBATIN.view
             if (role == "apoteker")
             {
                 tambahStok_btn.Visible = true;
+                tambahObat_btn.Visible = true;
             }
-            else if (role == "kasir")
+            else
             {
                 tambahStok_btn.Visible = false;
+                tambahObat_btn.Visible = false;
+                // Geser tombol detail obat ke kiri agar tidak ada ruang kosong
+                detailObat_btn.Left = tambahStok_btn.Left;
             }
 
             // Tampilkan semua data obat
             tampilkanData();
         }
 
-        // Method untuk menampilkan data ke DataGridView
-        private void tampilkanData()
+        // Method untuk merapikan nama kolom dan visibilitas
+        private void formatColumns()
         {
-            DataTable dt = obatService.viewAll();
-            obat_dgv.DataSource = dt;
-
-            // Sembunyikan kolom id_obat agar tidak terlihat di tabel
             if (obat_dgv.Columns["id_obat"] != null)
                 obat_dgv.Columns["id_obat"].Visible = false;
 
-            // Ubah nama header kolom agar lebih rapi
             if (obat_dgv.Columns["nama_obat"] != null)
                 obat_dgv.Columns["nama_obat"].HeaderText = "Nama Obat";
 
@@ -56,6 +55,17 @@ namespace OBATIN.view
 
             if (obat_dgv.Columns["stok"] != null)
                 obat_dgv.Columns["stok"].HeaderText = "Stok";
+
+            if (obat_dgv.Columns["kategori"] != null)
+                obat_dgv.Columns["kategori"].HeaderText = "Kategori";
+        }
+
+        // Method untuk menampilkan data ke DataGridView
+        private void tampilkanData()
+        {
+            DataTable dt = obatService.viewAll();
+            obat_dgv.DataSource = dt;
+            formatColumns();
         }
 
         // Pencarian obat saat TextBox berubah
@@ -77,10 +87,7 @@ namespace OBATIN.view
             }
 
             obat_dgv.DataSource = dt;
-
-            // Sembunyikan kolom id_obat lagi setelah refresh
-            if (obat_dgv.Columns["id_obat"] != null)
-                obat_dgv.Columns["id_obat"].Visible = false;
+            formatColumns();
         }
 
         // Tombol Tambah Stok diklik (hanya apoteker)
@@ -193,6 +200,35 @@ namespace OBATIN.view
                 MessageBox.Show("Gagal menambahkan stok. Coba lagi.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Tombol Tambah Obat diklik
+        private void tambahObat_btn_Click(object sender, EventArgs e)
+        {
+            FormTambahObat formTambah = new FormTambahObat();
+            if (formTambah.ShowDialog() == DialogResult.OK)
+            {
+                // Refresh data setelah berhasil menambahkan obat baru
+                tampilkanData();
+            }
+        }
+
+        // Tombol Detail Obat diklik
+        private void detailObat_btn_Click(object sender, EventArgs e)
+        {
+            if (obat_dgv.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Pilih obat terlebih dahulu!", "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow barisTerpilih = obat_dgv.SelectedRows[0];
+            int idObat = Convert.ToInt32(barisTerpilih.Cells["id_obat"].Value);
+            string namaObat = barisTerpilih.Cells["nama_obat"].Value.ToString();
+
+            FormDetailObat formDetail = new FormDetailObat(idObat, namaObat, role);
+            formDetail.ShowDialog();
         }
     }
 }
