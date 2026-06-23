@@ -1,4 +1,4 @@
-﻿namespace OBATIN.view
+namespace OBATIN.view
 {
     partial class FormLogin
     {
@@ -30,7 +30,7 @@
         {
             this.panelkiri = new System.Windows.Forms.Panel();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.usernzme_txt = new System.Windows.Forms.TextBox();
+            this.username_txt = new System.Windows.Forms.TextBox();
             this.password_txt = new System.Windows.Forms.TextBox();
             this.login_btn = new System.Windows.Forms.Button();
             this.username_lbl = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@
             this.panelkiri.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelkiri.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panelkiri.Location = new System.Drawing.Point(0, 0);
+            this.panelkiri.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelkiri.Name = "panelkiri";
             this.panelkiri.Size = new System.Drawing.Size(317, 394);
             this.panelkiri.TabIndex = 0;
@@ -55,31 +56,32 @@
             // logo
             // 
             this.logo.Image = global::OBATIN.Properties.Resources.obatin;
-            this.logo.Location = new System.Drawing.Point(76, 113);
+            this.logo.Location = new System.Drawing.Point(76, 112);
+            this.logo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logo.Name = "logo";
             this.logo.Size = new System.Drawing.Size(150, 150);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             // 
-            // usernzme_txt
+            // username_txt
             // 
-            this.usernzme_txt.BackColor = System.Drawing.Color.White;
-            this.usernzme_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.usernzme_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernzme_txt.ForeColor = System.Drawing.Color.Black;
-            this.usernzme_txt.Location = new System.Drawing.Point(479, 121);
-            this.usernzme_txt.Multiline = true;
-            this.usernzme_txt.Name = "usernzme_txt";
-            this.usernzme_txt.Size = new System.Drawing.Size(272, 40);
-            this.usernzme_txt.TabIndex = 1;
-            // 
-            // password_txt
+            this.username_txt.BackColor = System.Drawing.Color.White;
+            this.username_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.username_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_txt.ForeColor = System.Drawing.Color.Black;
+            this.username_txt.Location = new System.Drawing.Point(479, 121);
+            this.username_txt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.username_txt.Multiline = true;
+            this.username_txt.Name = "username_txt";
+            this.username_txt.Size = new System.Drawing.Size(272, 40);
+            this.username_txt.TabIndex = 1;
             // 
             this.password_txt.BackColor = System.Drawing.Color.White;
             this.password_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.password_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_txt.Location = new System.Drawing.Point(479, 204);
-            this.password_txt.Multiline = true;
+            this.password_txt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(272, 40);
             this.password_txt.TabIndex = 2;
@@ -91,6 +93,7 @@
             this.login_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.login_btn.Location = new System.Drawing.Point(479, 301);
+            this.login_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(154, 49);
             this.login_btn.TabIndex = 3;
@@ -109,7 +112,7 @@
             // password_lbl
             // 
             this.password_lbl.AutoSize = true;
-            this.password_lbl.Location = new System.Drawing.Point(376, 213);
+            this.password_lbl.Location = new System.Drawing.Point(376, 212);
             this.password_lbl.Name = "password_lbl";
             this.password_lbl.Size = new System.Drawing.Size(78, 20);
             this.password_lbl.TabIndex = 5;
@@ -137,11 +140,13 @@
             this.Controls.Add(this.username_lbl);
             this.Controls.Add(this.login_btn);
             this.Controls.Add(this.password_txt);
-            this.Controls.Add(this.usernzme_txt);
+            this.Controls.Add(this.username_txt);
             this.Controls.Add(this.panelkiri);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.panelkiri.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
@@ -153,7 +158,7 @@
 
         private System.Windows.Forms.Panel panelkiri;
         private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.TextBox usernzme_txt;
+        private System.Windows.Forms.TextBox username_txt;
         private System.Windows.Forms.TextBox password_txt;
         private System.Windows.Forms.Button login_btn;
         private System.Windows.Forms.Label username_lbl;
